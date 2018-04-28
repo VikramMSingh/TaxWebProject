@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href=" {{url_for('static', filename='nationality.css')}}">
+    <meta charset="UTF-8">
+    <title>Page1</title>
+</head>
+<body>
+<div id="form">
+     <form method='post' action="/Dashboard/Taxes/page1">
+         <div>{{form.csrf_token}}</div>
+         <div>{{form.nationality.label}} {{form.nationality()}}</div>
+         <div>{{form.passport_number.label}} {{form.passport_number()}}</div>
+         <div>{{form.visa_type.label}} {{form.visa_type()}}</div>
+         <div>{{form.date_of_entry.label}} {{form.date_of_entry()}}</div>
+         <div>{{form.travel_boolean.label}} {{form.travel_boolean()}}</div>
+         <div>{{form.submit()}}</div>
+
+     </form>
+         </div>
+</body>
+</html>

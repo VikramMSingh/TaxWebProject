@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function myFunction() {
+            document.getElementById("demo").innerHTML= <div>{{form.start_date_2.label}} </div> ;
+            }
+    </script>
+    <title>Title</title>
+</head>
+<body>
+<div id="form">
+    <form method="post" action="/Dashboard/Taxes/page1_travel">
+        <div style="visibility:hidden">{{form.csrf_token()}}</div>
+        <div>{{form.start_date_1.label}} {{form.start_date_1()}}</div>
+        <div>{{form.end_date_1.label}} {{form.end_date_1()}}</div>
+        <div>{{form.submit()}}</div>
+    </form>
+</div>
+<p id="demo">Testing</p>
+<button type="button" onclick="myFunction()">Test it</button>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE=html>
+<html lang='en'>
+<head>
+    <title>Registration</title>
+    <body>
+        <div id='form'>
+            <form method=post action='/Register'>
+                <div>{{form.csrf_token()}}	</div>
+            <div>{{form.email.label}} {{form.email()}}</div>
+            <div>{{form.password.label}} {{form.password()}}</div>
+            <div>{{form.confirm.label}} {{form.confirm()}}</div>
+            <div>{{form.submit()}}</div>
+            </form>
+
+        </div>
+    </body>
+</head>
+</html>

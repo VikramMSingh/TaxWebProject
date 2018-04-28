@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<div id="form">
+    <form method="post" action="/Dashboard/Basic_profile">
+        <div>{{form.csrf_token}}</div>
+        <div>{{form.first_name.label}} {{form.first_name()}} {{form.middle_name.label}} {{form.middle_name()}}</div>
+        <div>{{form.last_name.label}} {{form.last_name()}}</div>
+        <div>{{form.date_of_birth.label}} {{form.date_of_birth()}}</div>
+        <div>{{form.submit()}}</div>
+    </form>
+</div>
+</body>
+</html>

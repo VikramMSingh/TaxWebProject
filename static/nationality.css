@@ -1,0 +1,11 @@
+body{
+background-color:aqua;
+}
+#form{
+display: block;
+width: 400px;
+border: 30px;
+margin: 25px black;
+padding:25px bottom;
+align:center;
+}

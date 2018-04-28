@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Address</title>
+</head>
+<body>
+<div id="form">
+    <form method="post" action="/Dashboard/Taxes/page2">
+        <div>{{form.csrf_token()}}</div>
+        <div>{{form.address_line_1.label}} {{form.address_line_1()}}</div>
+        <div>{{form.address_line_2.label}} {{form.address_line_2()}}</div>
+        <div>{{form.city.label}} {{form.city()}}</div>
+        <div>{{form.state.label}} {{form.state()}}</div>
+        <div>{{form.pincode_US.label}} {{form.pincode_US()}}</div>
+        <div>{{form.submit()}}</div>
+    </form>
+</div>
+
+</body>
+</html>

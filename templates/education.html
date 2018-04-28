@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href=" {{url_for('static', filename='nationality.css')}}">
+    <meta charset="UTF-8">
+    <title>Academic details</title>
+</head>
+<body>
+<div id="form">
+    <form method="post" action="/Dashboard/Taxes/page3">
+        <div style="visibility:hidden">{{form.csrf_token()}}</div>
+        <div>{{form.university.label}} {{form.university()}}</div>
+        <div>{{form.advisor_name.label}} {{form.advisor_name()}}</div>
+        <div>{{form.advisor_phone.label}} {{form.advisor_phone()}}</div>
+        <div>{{form.uni_address_1.label}} {{form.uni_address_1()}}</div>
+        <div>{{form.uni_city.label}} {{form.uni_city()}}</div>
+        <div>{{form.uni_state.label}} {{form.uni_state()}}</div>
+        <div>{{form.uni_pincode.label}} {{form.uni_pincode()}}</div>
+        <div>{{form.uni_country.label}} {{form.uni_country()}}</div>
+        <div>{{form.uni_phone.label}} {{form.uni_phone()}}</div>
+        <div>{{form.submit()}}</div>
+
+    </form>
+</div>
+</body>
+</html>
