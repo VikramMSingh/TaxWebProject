@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script>
-        function myFunction() {
-            document.getElementById("demo").innerHTML= <div>{{form.start_date_2.label}} </div> ;
-            }
+    <script type="text/javascript">
+     function moreCheck(){
+        if
+        (document.getElementById('yesCheck').checked){
+        document.getElementById('ifYes').style.display='block';
+        }
+        else
+        document.getElementById('ifYes').style.display='none';
+        }
+
     </script>
     <title>Title</title>
 </head>
@@ -15,6 +21,12 @@
         <div style="visibility:hidden">{{form.csrf_token()}}</div>
         <div>{{form.start_date_1.label}} {{form.start_date_1()}}</div>
         <div>{{form.end_date_1.label}} {{form.end_date_1()}}</div>
+        <p>Additional travel?</p>
+        Yes <input type="radio" onclick="javascript:moreCheck();" name="yesno" id="yesCheck">
+        No <input type="radio" onclick="javascript:moreCheck();" name="yesno" id="noCheck"><br>
+        <div id="ifYes" style="display:none">{{form.start_date_2.label}} {{form.start_date_2()}} <br>
+        {{form.end_date_2.label}} {{form.end_date_2()}}</div>
+
         <div>{{form.submit()}}</div>
     </form>
 </div>
