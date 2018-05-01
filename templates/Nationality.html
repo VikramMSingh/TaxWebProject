@@ -3,6 +3,17 @@
 <head>
     <link rel="stylesheet" type="text/css" href=" {{url_for('static', filename='nationality.css')}}">
     <meta charset="UTF-8">
+    <script type="text/javascript">
+        function visaCheck(){
+        if
+        (document.getElementById('yesCheck').checked){
+        document.getElementById('ifYes').style.display='block';
+        }
+        else
+        document.getElementById('ifYes').style.display=none;
+        }
+
+    </script>
     <title>Page1</title>
 </head>
 <body>
@@ -14,6 +25,10 @@
          <div>{{form.visa_type.label}} {{form.visa_type()}}</div>
          <div>{{form.date_of_entry.label}} {{form.date_of_entry()}}</div>
          <div>{{form.travel_boolean.label}} {{form.travel_boolean()}}</div>
+         <p>Has your visa status changed?</p>
+         Yes<input type="radio" onclick="javascript:visaCheck();" name="visayn" id="yesCheck">
+         No<input type="radio" onclick="javascript:visaCheck();" name="visayn" id="noCheck"><br>
+         <div id="ifYes" style="display:none"> {{form.visa_change.label}} {{form.visa_change()}}</div>
          <div>{{form.submit()}}</div>
 
      </form>

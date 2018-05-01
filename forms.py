@@ -30,10 +30,11 @@ class nationalityform(FlaskForm):
     nationality=SelectField('Please select country of citizenship', [validators.DataRequired()],
                             choices=[('India', 'India'), ('China', 'China'),('Spain','Spain')])
     passport_number=StringField('Enter your passport number', [validators.DataRequired()])
-    visa_type=SelectField('Visa type', [validators.DataRequired()], choices=[('F1', 'F1'), ('H1B', 'H1B'), ('J1', 'J1')])
+    visa_type=SelectField('Visa type on entry to the US', [validators.DataRequired()], choices=[('F1', 'F1'), ('H1B', 'H1B'), ('J1', 'J1')])
     date_of_entry=DateField('First date of entry to the US', [validators.DataRequired()], format('mm-dd-yyyy'))
     travel_boolean=SelectField('Travelled outside the US within the past 3 years?', [validators.DataRequired()],
                                choices=[('Yes', 'Yes'), ('No', 'No')])
+    visa_change=SelectField('Current visa status', [validators.Optional()], choices=[('F1','F1'), ('H1B','H1B'), ('J1','J1')])
     submit=SubmitField('Next')
 
 class travel_detail(FlaskForm):
