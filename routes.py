@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import sys
 import os
 from flask_wtf import *
@@ -6,6 +6,10 @@ from application import app
 #from wtforms import *
 from passlib.hash import sha256_crypt, cisco_type7
 from forms import *
+from datetime import *
+from dbconnect import connection
+from pymysql import escape_string as thwart
+import pymysql.cursors
 
 
 #Landing page for website
@@ -22,13 +26,13 @@ def register():
             password=sha256_crypt.encrypt((str(form.password.data)))
             c, conn=connection()
 
-            x=c.execute('Select * FROM users where email=%s', (thwart(email)))
+            x=c.execute('Select * FROM USERS where email=%s', (thwart(email)))
 
             if int(x)>0:
                 flash('User already exists')
                 return render_template('Registration.html', form=form)
             else:
-                c.execute('Insert into users (email, password) VALUES (%s, %s)',
+                c.execute('Insert into USERS (email, password) VALUES (%s, %s)',
                           (thwart(email), thwart(password)))
                 conn.commit()
                 flash('Thanks for registering')
@@ -49,15 +53,17 @@ def login():
     try:
         form=loginform(request.form)
         if request.method=='POST' and form.validate_on_submit():
-            email=request.form('email')
-            data=c.execute('Select * from users where email=%s',(thwart(email)))
+            email=request.form['email']
+            password=request.form['password']
+            c, conn=connection()
+            data=c.execute('Select * from USERS where email=(%s)',(thwart(email)))
             data=c.fetchone()[2]
 
             #Password verification for user
-            if sha256_crypt.verify(request.form['password'], data):
+            if sha256_crypt.verify(password, data):
                 session['logged_in'] = True
                 session['email'] = request.form['email']
-                return redirect(url_for('/Dashboard'))
+                return redirect(url_for('dashboard'))
 
             else:
                 error="Invalid credentials, try again"
@@ -65,7 +71,7 @@ def login():
     except Exception as e:
         return (str(e));
 
-@app.route('/Dashboard')
+@app.route('/Dashboard', methods=['GET', 'POST'])
 def dashboard():
     return render_template('dashboard.html')
 
@@ -87,7 +93,7 @@ def Basic_profile():
 
 #For users that need to file form 1040NR, 1040NR-EZ, form 8843 and respective state taxes
 #First page passport, nationality, year of tax filing and visa type
-@app.route('/Dashboard/Taxes/page1')
+@app.route('/Dashboard/Taxes/page1', methods=['GET', 'POST'])
 def taxes():
     try:
         form=nationalityform(request.form)
@@ -97,12 +103,15 @@ def taxes():
             visa_type=request.form('visa_type')
             date_of_entry=request.form('date_of_entry')
             travel_boolean=request.form('travel_boolean')
+            visa_change=request.form('visa_change')
+
+
 
         return render_template('Nationality.html', form=form)
     except Exception as e:
         return (str(e));
 
-@app.route('/Dashboard/Taxes/page1_travel')
+@app.route('/Dashboard/Taxes/page1_travel', methods=['GET', 'POST'])
 def page1_travel():
     try:
         form=travel_detail(request.form)
@@ -115,7 +124,7 @@ def page1_travel():
         return (str(e));
 
 #Second page address and phone in US
-@app.route('/Dashboard/Taxes/page2')
+@app.route('/Dashboard/Taxes/page2', methods=['GET', 'POST'])
 def page2():
     try:
         form=addressUSform(request.form)
@@ -130,7 +139,7 @@ def page2():
     except Exception as e:
         return (str(e));
 
-@app.route('/Dashboard/Taxes/page3')
+@app.route('/Dashboard/Taxes/page3', methods=['GET', 'POST'])
 def education():
     try:
         form=educationForm(request.form)
@@ -147,3 +156,4 @@ def education():
         return render_template('education.html', form=form)
     except Exception as e:
         return (str(e));
+
