@@ -157,3 +157,15 @@ def education():
     except Exception as e:
         return (str(e));
 
+@app.route('/Dashboard/Taxes/page4', methods=['GET', 'POST'])
+def personal_info():
+    try:
+        form=maritalForm(request.form)
+        if request.method=='POST' and form.validate_on_submit():
+            marital_status=request.form['married']
+            #single_status=request.form['single_status']
+            dependent=request.form['dependent']
+        return render_template('marital_form.html', form=form)
+    except Exception as e:
+        return (str(e));
+

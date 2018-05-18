@@ -1,4 +1,4 @@
-from wtforms import TextField, BooleanField, PasswordField, SubmitField, validators, StringField, DateField, IntegerField, SelectField
+from wtforms import TextField, BooleanField, PasswordField, SubmitField, validators, StringField, DateField, IntegerField, SelectField, RadioField
 from flask.ext.wtf import FlaskForm
 from flask_wtf.csrf import CsrfProtect
 from wtforms.validators import DataRequired
@@ -67,4 +67,11 @@ class educationForm(FlaskForm):
     uni_pincode=StringField('Zipcode',[validators.DataRequired()])
     uni_country=SelectField('Country', [validators.DataRequired()], choices=[('USA', 'USA')])
     uni_phone=IntegerField('University phone', [validators.Optional(), validators.length(min=8, max=10)])
+    submit=SubmitField('Next')
+
+class maritalForm(FlaskForm):
+    csrf_token=CsrfProtect(app)
+    marital_status=RadioField('', [validators.Optional()], choices=[('Married', 'Married')])
+    single_status=RadioField('', [validators.Optional()], choices=[('Single', 'Single')])
+    dependent=RadioField('Do you claim your wife as a dependent?', [validators.Optional()],choices=[('Yes', 'Yes'), ('No', 'No')])
     submit=SubmitField('Next')

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href=" {{url_for('static', filename='nationality.css')}}">
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        function marital_check(){
+        if
+        (document.getElementById('marriedCheck').checked){
+        document.getElementById('ifYes').style.display='block';
+        }
+        else
+        document.getElementById('ifYes').style.display='none';
+        }
+
+    </script>
+    <title>Marital Status</title>
+</head>
+<body>
+<div id="form">
+    <form method="post" action="/Dashboard/Taxes/page4">
+        <div>{{form.csrf_token}}</div>
+        <p>Marital Status:</p>
+        Married <input type="radio" id="marriedCheck" onclick="javascript:marital_check();" name="married">
+        Single <input type="radio" id="noCheck" onclick="javascript:marital_check();" name="married">
+        <div id="ifYes" style="display:none">{{form.dependent.label}} {{form.dependent()}}</div>
+        <div>{{form.submit()}}</div>
+
+    </form>
+</div>
+</body>
+</html>
