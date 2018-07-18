@@ -144,15 +144,16 @@ def education():
     try:
         form=educationForm(request.form)
         if request.method=='POST' and form.validate_on_submit():
-            university=request.form('university')
-            advisor_name=request.form('advisor_name')
-            advisor_phone=request.form('advisor_phone')
-            uni_address_1=request.form('uni_address_1')
-            uni_city=request.form('uni_city')
-            uni_state=request.form('uni_state')
-            uni_pincode=request.form('uni_pincode')
-            uni_country=request.form('uni_country')
-            uni_phone=request.form('uni_phone')
+            university=request.form['univ']
+            #advisor_name=request.form['advisor_name']
+            #advisor_phone=request.form['advisor_phone']
+            #uni_address_1=request.form['uni_address_1']
+            #uni_city=request.form['uni_city']
+            #uni_state=request.form['uni_state']
+            #uni_pincode=request.form['uni_pincode']
+            #uni_country=request.form['uni_country']
+            #uni_phone=request.form['uni_phone']
+            return str(university)
         return render_template('education.html', form=form)
     except Exception as e:
         return (str(e));
@@ -165,7 +166,21 @@ def personal_info():
             marital_status=request.form['married']
             #single_status=request.form['single_status']
             dependent=request.form['dependent']
+            kids=request.form['kids']
+            kidsNumber=request.form['kidsNumber']
         return render_template('marital_form.html', form=form)
+    except Exception as e:
+        return (str(e));
+
+@app.route('/Dashboard/Taxes/page5', methods=['GET','POST'])
+def financial_info_a():
+    try:
+        form=financialForms(request.form)
+        if request.method=='POST' and form.validate_on_submit():
+            form_tax=request.form['form_selection']
+            w2number=request.form['W2form']
+
+        return render_template('Financial_forms.html', form=form)
     except Exception as e:
         return (str(e));
 

@@ -3,21 +3,22 @@
 <head>
     <link rel="stylesheet" type="text/css" href=" {{url_for('static', filename='nationality.css')}}">
     <meta charset="UTF-8">
+    <script src="{{url_for('static',filename='education.js')}}" type="text/javascript">
+    </script>
     <title>Academic details</title>
 </head>
 <body>
 <div id="form">
     <form method="post" action="/Dashboard/Taxes/page3">
         <div style="visibility:hidden">{{form.csrf_token()}}</div>
-        <div>{{form.university.label}} {{form.university()}}</div>
-        <div>{{form.advisor_name.label}} {{form.advisor_name()}}</div>
-        <div>{{form.advisor_phone.label}} {{form.advisor_phone()}}</div>
-        <div>{{form.uni_address_1.label}} {{form.uni_address_1()}}</div>
-        <div>{{form.uni_city.label}} {{form.uni_city()}}</div>
-        <div>{{form.uni_state.label}} {{form.uni_state()}}</div>
-        <div>{{form.uni_pincode.label}} {{form.uni_pincode()}}</div>
-        <div>{{form.uni_country.label}} {{form.uni_country()}}</div>
-        <div>{{form.uni_phone.label}} {{form.uni_phone()}}</div>
+        <select name="univ" id="uni" onchange="return setAddress()">
+            <option dataind="0" value="None">Select University</option>
+            <option dataind="1" value="AAMU">Alabama A&M University</option>
+            <option dataind="2" value="UA_Birm">University of Alabama at Birmingham</option>
+
+        </select>
+        <a>University Address</a><input type="text" id="address"/>
+        <a>City</a><input type="text" id="city"/>
         <div>{{form.submit()}}</div>
 
     </form>
