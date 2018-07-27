@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        function w_check(){
+        if
+        (document.getElementById('w2check').checked){
+        document.getElementById('W2').style.display = 'block';
+        }
+        else
+        document.getElementById('W2').style.display = 'none';
+        }
+
+        function int_check(){
+        if
+        (document.getElementById('IntCheck').checked){
+        document.getElementById('IntF').style.display = 'block';
+        }
+        else
+        document.getElementById('IntF').style.display = 'none';
+        }
+
+        function div_check(){
+        if
+        (document.getElementById('DivCheck').checked){
+        document.getElementById('DivF').style.display = 'block';
+        }
+        else
+        document.getElementById('DivF').style.display = 'none';
+        }
+
+        function formb_check(){
+        if
+        (document.getElementById('BCheck').checked){
+        document.getElementById('BFCheck').style.display = 'block';
+        }
+        else
+        document.getElementById('BFCheck').style.display = 'none';
+        }
+
+        function sform_check(){
+        if
+        (document.getElementById('SCheck').checked){
+        document.getElementById('SFCheck').style.display = 'block';
+        }
+        else
+        document.getElementById('SFCheck').style.display = 'none';
+        }
+
+        function tform_check(){
+        if
+        (document.getElementById('TCheck').checked){
+        document.getElementById('TFCheck').style.display = 'block';
+        }
+        else
+        document.getElementById('TFCheck').style.display = 'none';
+        }
+
+        function miscform_check(){
+        if
+        (document.getElementById('MiscCheck').checked){
+        document.getElementById('MFCheck').style.display = 'block';
+        }
+        else
+        document.getElementById('MFCheck').style.display = 'none';
+        }
+
+
+
+    </script>
+    <title>Forms</title>
+</head>
+<body>
+<form method="post" action="/Dashboard/Taxes/page5">
+    <div>{{form.csrf_token()}}</div>
+    <p>Forms:</p>
+    <!--W2 form-->
+    W2 <input type="checkbox" id="w2check" onclick="javascript:w_check();" name="w2form"><br>
+    <div id="W2" style="display:none">{{form.W2form.label}} {{form.W2form()}}</div>
+    <!--1099 Int-->
+    1099-Int <input type="checkbox" id="IntCheck" onclick="javascript:int_check();" name="IntForm"> <br>
+    <div id="IntF" style="display:none">{{form.IntForm.label}} {{form.IntForm()}}</div>
+    <!--1099 Div-->
+    1099-Div <input type="checkbox" id="DivCheck" onclick="javascript:div_check();" name="DivForm"><br>
+    <div id="DivF" style="display:none">{{form.DivForm.label}} {{form.DivForm()}}</div>
+    <!--1099 B-->
+    1099-B <input type="checkbox" id="BCheck" onclick="javascript:formb_check();" name="BForm"><br>
+    <div id="BFCheck"  style="display:none">{{form.StatusForm.label}} {{form.StatusForm()}}</div>
+    <!--1042S-->
+    1042-S<input type="checkbox" id="SCheck" onclick="javascript:sform_check();" name="SForm"><br>
+    <div id="SFCheck" style="display:none">{{form.S1042Form.label}} {{form.S1042Form()}}</div>
+    <!--1098T-->
+    1098-T<input type="checkbox" id="TCheck" onclick="javascript:tform_check();" name="TForm"><br>
+    <div id="TFCheck" style="display:none">{{form.TForm.label}} {{form.TForm()}}</div>
+    <!--1099Misc-->
+    1099-Misc<input type="checkbox" id="MiscCheck" onclick="javascript:miscform_check();" name="MiscForm"><br>
+    <div id="MFCheck" style="display:none">{{form.MiscForm.label}} {{form.MiscForm()}}</div>
+    <div>{{form.submit()}}</div>
+</form>
+
+</body>
+</html>

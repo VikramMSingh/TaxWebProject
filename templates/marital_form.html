@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href=" {{url_for('static', filename='nationality.css')}}">
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        function marital_check(){
+        if
+        (document.getElementById('marriedCheck').checked){
+        document.getElementById('ifYes').style.display='block' , document.getElementById('kid').style.display='block';
+        }
+        else
+        document.getElementById('ifYes').style.display='none' , document.getElementById('kid').style.display='none';
+        }
+
+        function kid_check(){
+        if
+        (document.getElementById('kidCheck').checked){
+        document.getElementById('kidnum').style.display='block';
+        }
+        else
+        document.getElementById('kidnum').style.display='none';
+        }
+
+
+    </script>
+    <title>Yer da</title>
+</head>
+<body>
+<div id="form">
+    <form method="post" action="/Dashboard/Taxes/page4">
+        <div>{{form.csrf_token()}}</div>
+        <p>Marital Status:</p>
+        Married <input type="radio" id="marriedCheck" onclick="javascript:marital_check();" name="married">
+        Single <input type="radio" id="noCheck" onclick="javascript:marital_check();" name="married">
+        <div id="ifYes" style="display:none">{{form.dependent.label}} {{form.dependent()}}</div>
+        <div id="kid" style="display:none"><p>Do you have any kids?</p>
+        Yes<input type="radio" id="kidCheck" onclick="javascript:kid_check();" name="kids"> No<input type="radio" id="noneCheck" onclick="javascript:kid_check();" name="kids"> </div>
+        <div id="kidnum" style="display:none">{{form.kidsNumber.label}} {{form.kidsNumber()}}</div>
+        <div>{{form.submit()}}</div>
+
+    </form>
+</div>
+</body>
+</html>
